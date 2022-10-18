@@ -195,7 +195,7 @@ git branch -D <имя ветки>
 ```
 git log --graph
 ```
-![graph](graph.png)
+![graph](1graph.png)
 
 ### 14. ***Игнорирование файлов***
 
