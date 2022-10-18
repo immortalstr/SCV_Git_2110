@@ -195,3 +195,4 @@ git branch -D <имя ветки>
 ```
 git log --graph
 ```
+![graph](graph.png)
