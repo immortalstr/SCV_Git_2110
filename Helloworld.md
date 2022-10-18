@@ -1,3 +1,5 @@
+![logo](logo.png)
+
 # Работа с Git
 ## Работа с Git
 
