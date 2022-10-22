@@ -289,3 +289,43 @@ rm -R имя папки - полное удаление папки и все ч�
 https://git-scm.com/book/ru/v2 .
 * А так же справочное руководство:
 Официальные и всеобъемлющие справочные страницы, которые включены в сам пакет Git. https://git-scm.com/docs
+
+## 14. **Добавление нового репозитория в качестве поддерева**
+Добавьте новый удаленный URL-адрес, указывающий на отдельный интересующий нас проект.
+
+```
+git remote add -f spoon-knife https://github.com/octocat/Spoon-Knife.git
+> Updating spoon-knife
+> warning: no common commits
+> remote: Counting objects: 1732, done.
+> remote: Compressing objects: 100% (750/750), done.
+> remote: Total 1732 (delta 1086), reused 1558 (delta 967)
+> Receiving objects: 100% (1732/1732), 528.19 KiB | 621 KiB/s, done.
+> Resolving deltas: 100% (1086/1086), done.
+> From https://github.com/octocat/Spoon-Knife
+>  * [new branch]      main     -> Spoon-Knife/main
+```
+Объедините Spoon-Knifeпроект с локальным проектом Git. Это не изменит ни один из ваших файлов локально, но подготовит Git к следующему шагу.
+
+Если вы используете Git 2.9 или выше:
+
+```
+git merge -s ours --no-commit --allow-unrelated-histories spoon-knife/main
+> Automatic merge went well; stopped before committing as requested
+```
+Если вы используете Git 2.8 или ниже:
+```
+git merge -s ours --no-commit spoon-knife/main
+> Automatic merge went well; stopped before committing as requested
+```
+Создайте новый каталог с именем Spoon-knife и скопируйте в него историю Git Spoon-Knifeпроекта.
+
+```
+git read-tree --prefix=spoon-knife/ -u spoon-knife/main
+```
+Зафиксируйте изменения, чтобы сохранить их в безопасности.
+
+```
+git commit -m "Subtree merged in spoon-knife"
+> [main fe0ca25] Subtree merged in spoon-knife
+```
